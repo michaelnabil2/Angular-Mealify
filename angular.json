@@ -22,8 +22,11 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
+            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -86,5 +89,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "a0229229-9ef5-4e4e-87f3-c4c2bc0dfe36"
   }
 }
