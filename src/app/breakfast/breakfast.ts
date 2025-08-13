@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { Meals } from '../services/meals';
 import { IMeal } from '../interfaces/i-meal';
 
@@ -9,7 +9,7 @@ import { IMeal } from '../interfaces/i-meal';
   styleUrl: './breakfast.css'
 })
 export class Breakfast {
-@Input() mealList : IMeal[] = [];
+ mealList =  signal<IMeal[]>([]);;
 
   constructor(private meals:Meals){};
 
@@ -17,7 +17,9 @@ export class Breakfast {
   ngOnInit():void{
     this.meals.getPizza().subscribe({
       next: (res)=>{
-        this.mealList = res.recipes;
+
+        this.mealList.set(res.recipes);
+        // this.mealList = res.recipes;
         console.log(res);
         
       },

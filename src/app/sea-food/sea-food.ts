@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { IMeal } from '../interfaces/i-meal';
 import { Seafoood } from '../services/seafoood';
 
@@ -12,7 +12,9 @@ import { Seafoood } from '../services/seafoood';
 })
 export class SeaFood {
 
- seafoodList !: IMeal[]
+dataLoaded : boolean = true; 
+
+seafoodList = signal<IMeal[]>([]);
 
 constructor(private seafood:Seafoood){};
 
@@ -21,8 +23,8 @@ ngOnInit():void{
   this.seafood.getseaFood().subscribe({
     next: (res)=>{
       
-      
-      this.seafoodList = res.recipes;
+      this.seafoodList.set(res.recipes );
+      // this.seafoodList = res.recipes;
 
       console.log(this.seafoodList);
     },

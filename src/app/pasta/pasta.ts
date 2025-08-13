@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { IMeal } from '../interfaces/i-meal';
 import { sPasta } from '../services/sPasta';
 
@@ -11,16 +11,20 @@ import { sPasta } from '../services/sPasta';
   styleUrl: './pasta.css'
 })
 
-export class Pasta {
+export class Pasta  {
 
-@Input()  pastaList : IMeal[] = [];
+dataLoaded : boolean = true;
+pastaList = signal<IMeal[]>([]);
+
 
   constructor(private pasta:sPasta){};
   
   ngOnInit():void{
     this.pasta.getPasta().subscribe({
       next: (res)=>{
-        this.pastaList = res.recipes;
+
+        this.pastaList.set(res.recipes);
+        // this.pastaList = res.recipes;
         console.log(res);
         
       },

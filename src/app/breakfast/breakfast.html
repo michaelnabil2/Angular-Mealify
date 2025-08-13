@@ -2,7 +2,7 @@
 <div class="container-fluid">
 <div class="container py-3 mx-auto ">
     <div class="row ">
-       @for (oneMeal of mealList; track oneMeal.recipe_id) {
+       @for (oneMeal of mealList(); track oneMeal.recipe_id) {
          <div class="col-md-3 my-2 ">
             
             <div class="">
